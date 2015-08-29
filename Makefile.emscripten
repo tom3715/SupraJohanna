@@ -1,10 +1,13 @@
-BIN = SuperJohannes.html
+BIN = SuperJohannes.bc
 CC = em++
-FLAGS = -Wall -pedantic
-INC = -I external/include -I include
-LOC_LIB = external/lib/linux_x86_64/libGLEW.a  external/lib/linux_x86_64/libglfw3.a
-SYS_LIB = -lGL -lX11 -lXxf86vm -lXrandr -lpthread -lXi -lm -lXinerama -lXcursor
+#FLAGS = -Wall -pedantic
+#INC = -I external/include
+#LOC_LIB = external/lib/linux_x86_64/libglfw3.a
+#SYS_LIB = -lGL -lglfw -lX11 -lXxf86vm -lXrandr -lpthread -lXi -lm -lXinerama -lXcursor
 SRC = $(wildcard src/*.cpp)
+EOPT = USE_GLFW=3 LEGACY_GL_EMULATION=1 	# Emscripten specific options
+EOPTS = $(addprefix -s $(EMPTY), $(EOPT)) 	# Add '-s ' to each option
 
 all:
 	${CC} ${FLAGS} -o ${BIN} ${SRC} ${INC} ${LOC_LIB} ${SYS_LIB}
+	${CC} ${BIN} -o SuperJohannes.html -s USE_GLFW=3 
