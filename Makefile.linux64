@@ -1,0 +1,10 @@
+BIN = SuperJohannes
+CC = g++
+FLAGS = -Wall -pedantic
+INC = -I external/include -I include
+LOC_LIB = external/lib/linux_x86_64/libGLEW.a  external/lib/linux_x86_64/libglfw3.a
+SYS_LIB = -lGL -lX11 -lXxf86vm -lXrandr -lpthread -lXi -lm -lXinerama -lXcursor
+SRC = $(wildcard src/*.cpp)
+
+all:
+	${CC} ${FLAGS} -o ${BIN} ${SRC} ${INC} ${LOC_LIB} ${SYS_LIB}

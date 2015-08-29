@@ -1,0 +1,12 @@
+BIN = SuperJohannes
+CC = g++
+FLAGS = -Wall -pedantic -static
+INC = -I external/include -I include
+LOC_LIB = external/lib/win32/libglfw3.a external/lib/win32/glew32s.lib
+#LOC_LIB = external/lib/win32/glfw3.a external/lib/win32/glfw3.dll external/lib/win32/glew32.dll external/lib/win32/glew32.a
+SYS_LIB = -lOpenGL32 -L ./ -lm -lgdi32
+#SYS_LIB = -lOpenGL32 -L ./ -lm
+SRC = $(wildcard src/*.cpp)
+
+all:
+	${CC} ${FLAGS} -o ${BIN} ${SRC} ${INC} ${LOC_LIB} ${SYS_LIB}
